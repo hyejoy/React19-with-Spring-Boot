@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router";
+import BasicLayout from "../layouts/basicLayout";
 
 // 로딩시 잠깐 보여주는 컴포넌트
 const Loading = () => <div>Loading...</div>;
@@ -7,9 +8,35 @@ const Loading = () => <div>Loading...</div>;
 const Main = lazy(() => import("../pages/mainPage"));
 const About = lazy(() => import("../pages/aboutPage"));
 
+const router = createBrowserRouter([
+  {
+    path: "",
+    Component: BasicLayout,
+    children: [
+      {
+        index: true,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Main />
+          </Suspense>
+        ),
+      },
+      {
+        path: "about",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <About />
+          </Suspense>
+        ),
+      },
+    ],
+  },
+]);
+
 /**
  * <Suspense>와 <Lazy>를 이용한 코드분할 (Code Splitting)적용
  */
+/*
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,5 +55,5 @@ const router = createBrowserRouter([
     ),
   },
 ]);
-
+*/
 export default router;
