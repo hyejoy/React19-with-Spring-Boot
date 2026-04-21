@@ -1,9 +1,10 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router";
 import BasicLayout from "../layouts/basicLayout";
+import todoRouter from "./todoRouter";
 
 // 로딩시 잠깐 보여주는 컴포넌트
-const Loading = () => <div>Loading...</div>;
+export const Loading = () => <div>Loading...</div>;
 // 필요할때까지 로딩하지마 의미
 const Main = lazy(() => import("../pages/mainPage"));
 const About = lazy(() => import("../pages/aboutPage"));
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      todoRouter(),
     ],
   },
 ]);

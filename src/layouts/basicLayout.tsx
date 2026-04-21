@@ -1,11 +1,13 @@
 import { Outlet } from "react-router";
+import BasicMenu from "../components/menus/basicMenu";
 
 export default function BasicLayout() {
   return (
     <>
-      <header className="bg-teal-400 p-5">
+      {/* <header className="bg-teal-400 p-5">
         <h1 className="text-2xl md:text-4xl">Header</h1>
-      </header>
+      </header> */}
+      <BasicMenu />
       <div className="bg-white my-5 w-full flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
         <main className="bg-sky-300 md:w-4/5 lg:w-3/4 px-5 py-5">
           <Outlet />
